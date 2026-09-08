@@ -1,0 +1,36 @@
+@startuml Lab14_Bronirovanie_Ekskursiy
+title Лабораторная работа №14 — Диаграмма деятельности\nБронирование мест на экскурсии и туры:\nдаты, маршруты, количество мест
+
+skinparam activityBackgroundColor #FFB74D
+skinparam activityBorderColor #000000
+skinparam activityDiamondBackgroundColor #FFEB3B
+skinparam activityDiamondBorderColor #000000
+skinparam ArrowColor #000000
+
+|Клиент|
+start
+:Авторизоваться в системе;
+
+repeat
+  :Выбрать дату экскурсии/тура;
+  :Выбрать маршрут;
+  :Указать количество мест;
+
+  |Система/Админ|
+  :Проверка доступности мест;
+repeat while (Свободно?) is (Нет) not (Да)
+
+:Зарегистрировать заявку\nна бронирование;
+
+fork
+  :Настроить авто напоминание;
+fork again
+  |Гид/Туроператор|
+  :Получение сообщения\nо бронировании;
+end fork
+
+|Клиент|
+:Получение подтверждения\nв личном кабинете;
+stop
+
+@enduml
